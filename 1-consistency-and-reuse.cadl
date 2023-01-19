@@ -1,0 +1,50 @@
+import "@cadl-lang/rest";
+
+using Cadl.Http;
+
+@service({
+  title: "Pet Store Service",
+  version: "1.0.0",
+})
+@server("https://example.com", "Single server endpoint")
+@doc("This is a sample server Petstore server.")
+namespace DemoService;
+
+model Pet {
+  name: string;
+}
+
+@route("/pets")
+namespace Pets {
+  op list(@query skip: int32, @query top: int32): {
+    @body pets: Pet[];
+  };
+
+  op read(@path petId: int32, @header ifMatch?: string): {
+    @header eTag: string;
+    @body pet: Pet;
+  };
+
+  @post
+  op create(@body pet: Pet): {};
+}
+
+// enum Color {
+//   Black,
+//   White,
+//   Grey,
+// }
+
+// model Cat extends Pet {
+//   age: integer;
+//   color: Color;
+// }
+
+// @route("/cats")
+// namespace Cats {
+//   @get
+//   op catchThemAll(): {
+//     @body cats: Cat[];
+//   };
+// }
+

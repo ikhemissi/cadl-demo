@@ -1,0 +1,42 @@
+import "@cadl-lang/rest";
+import "@cadl-lang/versioning";
+
+using Cadl.Http;
+using Cadl.Versioning;
+
+@service({
+  title: "Pet Store Service",
+  version: "1.0.0",
+})
+@versioned(Versions)
+@server("https://example.com", "Single server endpoint")
+@doc("This is a sample server Petstore server.")
+namespace DemoService;
+
+enum Versions {
+    v1,
+    v2,
+    v3,
+}
+
+@route("/pets")
+namespace Pets {
+  @get
+  @route("/testV1")
+  op getTestMessageV1(): string;
+
+  @get
+  @route("/testV2")
+  @added(Versions.v2)
+  op getTestMessageV2(): string;
+
+  @get
+  @route("/testV3")
+  @added(Versions.v3)
+  op getTestMessageV3(): string;
+}
+
+@added(Versions.v2)
+model AlsoAddedInV2 {
+  name: string;
+}

@@ -1,0 +1,19 @@
+import "@cadl-lang/rest";
+
+using Cadl.Http;
+
+@service({
+  title: "Pet Store Service",
+  version: "1.0.0",
+})
+@server("https://example.com", "Single server endpoint")
+@doc("This is a sample server Petstore server.")
+namespace DemoService;
+
+@route("/pets")
+namespace Pets {
+  @get
+  @route("/test")
+  @doc("Get a test message")
+  op getTestMessage(): string;
+}

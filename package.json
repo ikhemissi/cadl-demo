@@ -1,0 +1,27 @@
+{
+  "name": "cadl-test",
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "compile": "cadl compile .",
+    "format": "cadl format **/*.cadl",
+    "ui": "nodemon --watch cadl-output --exec \"open-swagger-ui cadl-output/@cadl-lang/openapi3/openapi.json\""
+  },
+  "dependencies": {
+    "@azure-tools/cadl-autorest": "^0.25.0",
+    "@azure-tools/cadl-azure-core": "^0.25.0",
+    "@azure-tools/cadl-azure-resource-manager": "^0.25.0",
+    "@azure-tools/cadl-providerhub": "^0.25.0",
+    "@cadl-lang/compiler": "0.39.0",
+    "@cadl-lang/openapi3": "0.39.0",
+    "@cadl-lang/rest": "0.39.0",
+    "@cadl-lang/versioning": "^0.39.0"
+  },
+  "private": true,
+  "devDependencies": {
+    "@cadl-lang/library-linter": "^0.39.0",
+    "@cadl-lang/lint": "^0.39.0",
+    "nodemon": "^2.0.20",
+    "open-swagger-ui": "^1.2.0"
+  }
+}

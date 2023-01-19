@@ -1,0 +1,36 @@
+import "@cadl-lang/rest";
+
+using Cadl.Http;
+
+@service({
+  title: "Pet Store Service",
+  version: "1.0.0",
+})
+@server("https://example.com", "Single server endpoint")
+@doc("This is a sample server Petstore server with authentication enabled.")
+
+// Authentication right now can ONLY be configured at the service level
+// @useAuth(BasicAuth)
+// @useAuth(BearerAuth)
+// @useAuth(ApiKeyAuth<ApiKeyLocation.header, "X-API-KEY">)
+// @useAuth(
+//     OAuth2Auth<[{
+//         type: OAuth2FlowType.implicit;
+//         authorizationUrl: "https://api.example.com/oauth2/authorize";
+//         refreshUrl: "https://api.example.com/oauth2/refresh";
+//         scopes: [
+//             "https://myservice.azure.com/read",
+//             "https://myservice.azure.com/write"
+//         ];
+//     }]>
+// )
+// @useAuth([BasicAuth, BearerAuth] | ApiKeyAuth<ApiKeyLocation.header, "X-API-KEY">)
+
+namespace DemoService;
+
+@route("/pets")
+namespace Pets {
+  @get
+  @route("/test")
+  op getTestMessage(): string;
+}
